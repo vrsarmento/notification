@@ -11,11 +11,11 @@ composer require vrsarmento/notification
 To make use of the library, simply require the autoload of the composer, invoke the class and make the method call:
 
 ```sh
-<? php
+<?php
 
 require __DIR__. '/vendor/autoload.php';
 
-USE Notification\Email;
+use Notification\Email;
 
 $mail = new Email(2, "mail.host.com", "your@email.com", "your-pass", "smtp secure (tls / ssl)", "port (587)", "from@email.com", "From Name");
 
