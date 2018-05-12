@@ -9,25 +9,26 @@ class Email
 {
 	private $mail = \stdClass::class;
 
-	public function __construct()
+	public function __construct($smtpDebug, $host, $user, $pass, $smtpSecure, $port, $setFromEmail, $setFromName)
 	{
 
-		$this->mail = new PHPMailer(true);                          // Passing `true` enables exceptions
+		$this->mail = new PHPMailer(true);                // Passing `true` enables exceptions
+
 		//Server settings
-		$this->mail->SMTPDebug = 2;                                 // Enable verbose debug output
+		$this->mail->SMTPDebug = $smtpDebug;                        // Enable verbose debug output
 		$this->mail->isSMTP();                                      // Set mailer to use SMTP
-		$this->mail->Host = 'smtp1.example.com;smtp2.example.com';  // Specify main and backup SMTP servers
+		$this->mail->Host = $host;                                  // Specify main and backup SMTP servers
 		$this->mail->SMTPAuth = true;                               // Enable SMTP authentication
-		$this->mail->Username = 'user@example.com';                 // SMTP username
-		$this->mail->Password = 'secret';                           // SMTP password
-		$this->mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
-		$this->mail->Port = 587;                                    // TCP port to connect to
+		$this->mail->Username = $user;                              // SMTP username
+		$this->mail->Password = $pass;                              // SMTP password
+		$this->mail->SMTPSecure = $smtpSecure;                      // Enable TLS encryption, `ssl` also accepted
+		$this->mail->Port = $port;                                  // TCP port to connect to
 		$this->mail->CharSet = 'utf-8';
 		$this->mail->setLanguage('br');
 		$this->mail->isHTML(true);
 
 		//Recipients
-		$this->mail->setFrom('from@example.com', 'Mailer');
+		$this->mail->setFrom($setFromEmail, $setFromName);
 	
 	}
 
